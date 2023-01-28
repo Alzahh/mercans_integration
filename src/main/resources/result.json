@@ -1,0 +1,140 @@
+{
+  "fname": "input_01.csv",
+  "payload": [
+    {
+      "employeeCode": "611207BE",
+      "action": "hire",
+      "data": {
+        "person.hire_date": "1992-07-01",
+        "person.full_name": "Alberto Leonard",
+        "person.birthdate": "1961-12-07",
+        "person.gender": "M"
+      },
+      "payComponents": [
+        {
+          "amount": 3300,
+          "currency": "usd",
+          "startDate": "2022-01-01",
+          "endDate": "2022-01-31"
+        }
+      ]
+    },
+    {
+      "employeeCode": "660831F5",
+      "action": "change",
+      "data": {
+        "person.hire_date": "1998-09-06",
+        "person.full_name": "Hazel Webster",
+        "person.birthdate": "1966-08-31",
+        "person.gender": "F"
+      },
+      "payComponents": [
+        {
+          "amount": 4400,
+          "currency": "eur",
+          "startDate": "2022-01-01",
+          "endDate": "2022-01-31"
+        },
+        {
+          "amount": 500,
+          "currency": "eur",
+          "startDate": "2021-01-01",
+          "endDate": "2021-12-31"
+        }
+      ]
+    },
+    {
+      "employeeCode": "7805046C",
+      "action": "terminate",
+      "data": {
+        "person.hire_date": "2007-07-18",
+        "person.birthdate": "1978-05-04",
+        "person.gender": "F",
+        "person.termination_date": "2007-12-31"
+      },
+      "payComponents": [
+        {
+          "amount": 1500,
+          "currency": "eur",
+          "startDate": "2022-01-01",
+          "endDate": "2022-01-31"
+        }
+      ]
+    },
+    {
+      "employeeCode": "80072480",
+      "action": "hire",
+      "data": {
+        "person.hire_date": "2013-05-31",
+        "person.full_name": "Brock Salazar",
+        "person.birthdate": "1980-07-24",
+        "person.gender": "M"
+      },
+      "payComponents": [
+        {
+          "amount": 1400,
+          "currency": "eur",
+          "startDate": "2022-01-01",
+          "endDate": "2022-01-31"
+        },
+        {
+          "amount": 100,
+          "currency": "eur",
+          "startDate": "2022-01-01",
+          "endDate": "2022-01-31"
+        }
+      ]
+    },
+    {
+      "employeeCode": "90040543",
+      "action": "change",
+      "data": {
+        "person.hire_date": "2015-05-31",
+        "person.full_name": "Cole Sloan",
+        "person.birthdate": "1990-04-05",
+        "person.gender": "M"
+      },
+      "payComponents": [
+        {
+          "amount": 3000,
+          "currency": "eur",
+          "startDate": "2022-01-01",
+          "endDate": "2022-01-31"
+        },
+        {
+          "amount": 50,
+          "currency": "eur",
+          "startDate": "2022-01-01",
+          "endDate": "2022-07-01"
+        }
+      ]
+    },
+    {
+      "employeeCode": "020121F8",
+      "action": "hire",
+      "data": {
+        "person.hire_date": "2022-03-01",
+        "person.full_name": "Zaiden Arnold",
+        "person.birthdate": "2002-01-21"
+      },
+      "payComponents": []
+    },
+    {
+      "employeeCode": "22000100",
+      "action": "hire",
+      "data": {
+        "person.hire_date": "2022-01-01",
+        "person.full_name": "Norah Church",
+        "person.birthdate": "2003-03-19",
+        "person.gender": "F"
+      },
+      "payComponents": []
+    }
+  ],
+  "errors": [
+    "One or more mandatory params are absent. Prop: contract_workStartDate, Value: ",
+    "Failed to map property ACTION with value: updte",
+    "One or more mandatory params are absent. Prop: contract_workStartDate, Value: "
+  ],
+  "uuid": "d8dc09c3-521c-479a-9f7b-4ef662bb5f1f"
+}

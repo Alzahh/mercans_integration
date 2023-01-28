@@ -1,0 +1,145 @@
+{
+  "fileNamePattern": "input_[0-9]+\\.csv",
+  "mappings": {
+    "ActionCodes": {
+      "add": "hire",
+      "update": "change",
+      "delete": "terminate"
+    },
+    "Genders": {
+      "male": "M",
+      "female": "F"
+    }
+  },
+  "fields": [
+    {
+      "fieldType": "ActionCode",
+      "sourceField": "ACTION",
+      "dataType": "Text",
+      "isMandatory": true,
+      "mappingKey": "ActionCodes"
+    },
+    {
+      "fieldType": "EmployeeCode",
+      "sourceField": "contract_workerId",
+      "dataType": "Text",
+      "isMandatory": true
+    },
+    {
+      "fieldType": "Regular",
+      "sourceField": "worker_name",
+      "targetEntity": "person",
+      "targetField": "full_name",
+      "dataType": "Text",
+      "isMandatory": false
+    },
+    {
+      "fieldType": "Regular",
+      "sourceField": "worker_personalCode",
+      "targetEntity": "person",
+      "targetField": "birthdate",
+      "dataType": "Date",
+      "isMandatory": false,
+      "dateFormat": "yyMMdd",
+      "validationPattern": "^(\\d{2}(1[0-2]|0[1-9])(3[01]|[12]\\d|0[1-9])).{22}$",
+      "regexCaptureGroupNr": 1
+    },
+    {
+      "fieldType": "Regular",
+      "sourceField": "worker_gender",
+      "targetEntity": "person",
+      "targetField": "gender",
+      "dataType": "Text",
+      "isMandatory": false,
+      "mappingKey": "Genders"
+    },
+    {
+      "fieldType": "Regular",
+      "sourceField": "contract_workStartDate",
+      "targetEntity": "person",
+      "targetField": "hire_date",
+      "dataType": "Date",
+      "isMandatory": true,
+      "dateFormat": "ddMMyy"
+    },
+    {
+      "fieldType": "Regular",
+      "sourceField": "contract_endDate",
+      "targetEntity": "person",
+      "targetField": "termination_date",
+      "dataType": "Date",
+      "isMandatory": false,
+      "dateFormat": "ddMMyy"
+    },
+    {
+      "fieldType": "Regular",
+      "sourceField": "pay_amount",
+      "targetEntity": "salary_component",
+      "targetField": "amount",
+      "dataType": "Decimal",
+      "isMandatory": true
+    },
+    {
+      "fieldType": "Regular",
+      "sourceField": "pay_currency",
+      "targetEntity": "salary_component",
+      "targetField": "currency",
+      "dataType": "Text",
+      "isMandatory": true,
+      "validationPattern": "[A-Za-z]{3}"
+    },
+    {
+      "fieldType": "Regular",
+      "sourceField": "pay_effectiveFrom",
+      "targetEntity": "salary_component",
+      "targetField": "start_date",
+      "dataType": "Date",
+      "isMandatory": true,
+      "dateFormat": "ddMMyy"
+    },
+    {
+      "fieldType": "Regular",
+      "sourceField": "pay_effectiveTo",
+      "targetEntity": "salary_component",
+      "targetField": "end_date",
+      "dataType": "Date",
+      "isMandatory": true,
+      "dateFormat": "ddMMyy"
+    },
+    {
+      "fieldType": "Regular",
+      "sourceField": "compensation_amount",
+      "targetEntity": "salary_component",
+      "targetField": "amount",
+      "dataType": "Decimal",
+      "isMandatory": true
+    },
+    {
+      "fieldType": "Regular",
+      "sourceField": "compensation_currency",
+      "targetEntity": "salary_component",
+      "targetField": "currency",
+      "dataType": "Text",
+      "isMandatory": true,
+      "validationPattern": "[A-Za-z]{3}"
+    },
+    {
+      "fieldType": "Regular",
+      "sourceField": "compensation_effectiveFrom",
+      "targetEntity": "salary_component",
+      "targetField": "start_date",
+      "dataType": "Date",
+      "isMandatory": true,
+      "dateFormat": "ddMMyy"
+    },
+    {
+      "fieldType": "Regular",
+      "sourceField": "compensation_effectiveTo",
+      "targetEntity": "salary_component",
+      "targetField": "end_date",
+      "dataType": "Date",
+      "isMandatory": true,
+      "dateFormat": "ddMMyy"
+    }
+  ]
+}
