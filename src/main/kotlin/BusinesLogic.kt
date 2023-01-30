@@ -19,6 +19,7 @@ fun applyBusinessLogic(
     parent@ for (row in rows) {
         val fields = configuration.fields
         var newRow: RawData = row.copy()
+        // this loop is iterating through properties of RawData class
         child@ for (prop in RawData::class.declaredMemberProperties) {
 
             val field = fields.first { it.sourceField == prop.name }
@@ -26,16 +27,18 @@ fun applyBusinessLogic(
             //  applying mappings if necessary
             if (field.mappingKey != null) {
                 val map = configuration.mappings[field.mappingKey!!]
-                val appliedMappingResult = applyMapping(newRow, prop.name, map)
 
-
-                // I decided not to log errors if field is not mandatory
-                if (appliedMappingResult is String) {
+                try {
+                    newRow = applyMapping(newRow, prop.name, map)
+                } catch (e: Exception) {
                     if (field.isMandatory) {
-                        errors.add(appliedMappingResult)
+                        errors.add("Failed to map property ${prop.name} with value: ${newRow.getPropertyValue(prop.name)}")
                         continue@parent
-                    } else continue@child
-                } else newRow = appliedMappingResult as RawData
+
+                    }
+                    newRow.setPropertyValue(prop.name, "")
+                }
+
             }
 
 
@@ -44,10 +47,10 @@ fun applyBusinessLogic(
 
             if (field.validationPattern != null && oldValue != "") {
                 val match = findRegexMatch(newRow, oldValue, field.validationPattern!!, field.regexCaptureGroupNr)
-                if (match == "" && field.isMandatory) {
+                if (match == "") {
                     errors.add("Failed to apply regex validation. Pattern: ${field.validationPattern}, Value: $oldValue")
-                    continue@parent
-                } else newRow.setPropertyValue(prop.name, match)
+                }
+                newRow.setPropertyValue(prop.name, match)
             }
 
             // reloading this variable in case it was modified in previous code block
@@ -61,12 +64,9 @@ fun applyBusinessLogic(
                     val newDate = formatter.format(date)
                     newRow.setPropertyValue(prop.name, newDate)
                 } catch (e: Exception) {
-                    if (field.isMandatory) {
-                        errors.add("failed to parse date: $oldValue from field: ${prop.name}")
-                        continue@parent
-                    } else {
-                        newRow.setPropertyValue(prop.name, "")
-                    }
+                    if (field.isMandatory) errors.add("failed to parse date: $oldValue from field: ${prop.name}")
+                    newRow.setPropertyValue(prop.name, "")
+
 
                 }
             }
@@ -91,9 +91,10 @@ fun applyBusinessLogic(
 }
 
 
-fun applyMapping(newRow: RawData, propName: String, map: Map<String, String>?): Any {
+fun applyMapping(newRow: RawData, propName: String, map: Map<String, String>?): RawData {
     val oldValue = newRow.getPropertyValue(propName).toString().lowercase()
-    val newValue = map?.get(oldValue) ?: return "Failed to map property $propName with value: $oldValue"
+
+    val newValue = map?.get(oldValue) ?: throw Exception()
     newRow.setPropertyValue(propName, newValue)
     return newRow
 }

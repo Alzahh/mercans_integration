@@ -11,6 +11,6 @@ fun readCSV(path : String) : ArrayList<RawData> {
 
     return  mapper.readerFor(RawData::class.java)
         .with(CsvSchema.emptySchema().withHeader())
-        .readValues<RawData>(FileInputStream("src/main/resources/input_01.csv"))
+        .readValues<RawData>(FileInputStream(path))
         .readAll() as ArrayList<RawData>
 }

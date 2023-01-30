@@ -6,6 +6,7 @@ import java.io.File
 const val FILE_NAME = "input_01.csv"
 const val CSV_PATH = "src/main/resources/input_01.csv"
 const val CONFIGURATION_PATH = "src/main/resources/dynamic_config.json"
+const val PATH_TO_JSON = "src/main/resources/result.json"
 
 
 fun main(args: Array<String>) {
@@ -27,6 +28,6 @@ fun main(args: Array<String>) {
         val result = ResultJson(FILE_NAME, payloads, errors)
         val gson = Gson()
         println()
-        File("src/main/resources/result.json").writeText(gson.toJson(result))
+        File(PATH_TO_JSON).writeText(gson.toJson(result))
     }
 }

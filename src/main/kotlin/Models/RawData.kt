@@ -33,11 +33,6 @@ public data class RawData(
   @field:JsonProperty("compensation_effectiveTo")
   public var compensation_effectiveTo: String?,
 ) {
-  public constructor() : this( null, null, null, null, null, null, null, null, null, null, null,
+  public constructor() : this(null, null, null, null, null, null, null, null, null, null, null,
       null, null, null, null)
-
-  override fun toString(): String {
-    return "RawData(ACTION=$ACTION, contract_workerId=$contract_workerId, worker_name=$worker_name, worker_personalCode=$worker_personalCode, worker_gender=$worker_gender, contract_workStartDate=$contract_workStartDate, contract_endDate=$contract_endDate, pay_amount=$pay_amount, pay_currency=$pay_currency, pay_effectiveFrom=$pay_effectiveFrom, pay_effectiveTo=$pay_effectiveTo, compensation_amount=$compensation_amount, compensation_currency=$compensation_currency, compensation_effectiveFrom=$compensation_effectiveFrom, compensation_effectiveTo=$compensation_effectiveTo)"
-  }
-
 }

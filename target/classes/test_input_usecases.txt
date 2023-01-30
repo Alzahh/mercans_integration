@@ -1,0 +1,20 @@
+This file describes each line in file test_input.csv
+Each line is a test case.
+In brackets expected result specified
+
+Please note, that it is relevant only for default configuration.
+
+1)  Valid case without pay components
+2)  Valid case with 1 pay component
+3)  Valid case with 2 pay components
+4)  Invalid currency in single pay component (payload, without pay components)
+5)  One parameter absent in single pay component (payload, without pay components)
+6)  Invalid date in single pay component (payload, without pay components)
+7)  valid first pay component and invalid second (payload with first pay component)
+8)  Invalid first pay component and valid second (payload with second pay component)
+9)  Invalid date in mandatory field (No payload)
+10) Invalid mapping in mandatory field (No payload)
+11) Invalid mapping in optional field (valid payload. This field should be absent)
+12) No data in mandatory field (No payload)
+13) No employee code provided, but hire date is specified (valid payload. Employee code should be generated)
+14) No employee code provided and hire date provided (no payload)

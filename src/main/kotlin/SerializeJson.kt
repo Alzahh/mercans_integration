@@ -1,5 +1,6 @@
 import Models.PayComponent
 import Models.Payload
+import kotlin.reflect.full.declaredMemberProperties
 
 fun serializePayloads(rows: ArrayList<RawData>, fields: List<DynamicConfigurationField>): ArrayList<Payload> {
 
@@ -36,9 +37,8 @@ fun serializePayComponents(row: RawData, fields: List<DynamicConfigurationField>
     val payFields = fields.filter { it.targetEntity == "salary_component" }
     var components = ArrayList<PayComponent>()
 
-
-
-    for (i in payFields.indices step 4) {
+    val step = PayComponent::class.declaredMemberProperties.size
+    for (i in payFields.indices step step) {
         try {
             val amount = row.getPropertyValue(payFields[i].sourceField!!).toString()
             val currency = row.getPropertyValue(payFields[i + 1].sourceField!!).toString()
@@ -53,9 +53,4 @@ fun serializePayComponents(row: RawData, fields: List<DynamicConfigurationField>
         }
     }
     return components
-}
-
-fun findByTargetField(row: RawData, fields: List<DynamicConfigurationField>, targetField: String): String {
-    val field = fields.first { it.targetField == targetField }
-    return row.getPropertyValue(field.sourceField!!).toString()
 }
